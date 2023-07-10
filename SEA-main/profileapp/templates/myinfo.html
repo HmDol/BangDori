@@ -1,0 +1,74 @@
+{% extends "extends/base.html" %}
+{% block mypage %}
+    <div id="index-box">
+        <div style="border-bottom :2px solid #96ceb4;"><br><br></div>
+        <br>
+        <div id="myinfo-list" class="index-list clicked">내 정보</div>
+        <div id="mynotice-list" class="index-list">내가 쓴 글</div>
+        <div id="bookmark-list" class="index-list">추천 게시글</div>
+        <div id="address-list" class="index-list">주소 설정</div>
+        <div id="corporate-list" class="index-list">사업자 등록</div>
+    </div>
+
+    <div id="content 여백" style="width : 10%"></div>
+
+    <div id="content-box">
+        <form method="post" action="">
+            {% csrf_token %}
+            <div id="myinfo-box" class="content">
+                <h3>내 정보 설정</h3>
+                <p>내 정보를 확인하고 설정할 수 있습니다.</p>
+                <table>
+                    <!--
+                    <tr>
+                        <th>닉네임</th>
+                        <td>
+                            <input type="text" value="{{ request.user.nickname }}">
+                            <input type="button" value="변경" class="button">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>이름</th>
+                        <td><input type="text" value="사용자 이름"></td>
+                    </tr>
+                    <tr>
+                        <th>아이디</th>
+                        <td>
+                            <input type="text" value="사용자 아이디">
+                            <input type="button" value="확인">
+                        </td>
+                    </tr> -->
+                    <tr>
+                        <th>비밀번호</th>
+                        <td><input type="password" name="password" required></td>
+                    </tr>
+                    <tr>
+                        <th>이메일</th>
+                        <td><input type="text" name="email" value="{{ email }}" required></td>
+                    </tr>
+                    <tr>
+                        <th>전화번호</th>
+                        <td><input type="text" name="phone" value="{{ phone }}" required></td>
+                    </tr>
+                    {% if target_user.profile %}
+                        <tr>
+                            <th>프로필</th>
+                            <td><a href="{% url 'profileapp:update' pk=target_user.profile.pk %}">프로필 수정</a></td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <th>프로필</th>
+                            <td><a href="{% url 'profileapp:create' %}">프로필 생성</a></td>
+                        </tr>
+                    {% endif %}
+                </table>
+                <div class="bottom">
+                    <input class="button" type="submit" value="적용">
+                    <input class="button" type="submit" value="취소">
+                </div>
+            </div>
+
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,264 @@
+.board-article{
+    width: 100%;
+    height: 100%;
+}
+
+.article-top{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+}
+
+.article-title{
+    padding-inline-start: 15px;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.article-date{
+    padding-inline-end: 5px;
+    font-size: 15px;
+}
+
+.article-info{
+    padding: 3 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.article-writer{
+    padding-inline-start: 15px;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.article-user{
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    padding-inline-end: 5px;
+}
+
+.article-content-box{
+    width: 100%;
+    height: 100%;
+    border-bottom: 1px solid #ccc;
+}
+
+.article-content{
+    margin: 30px 0;
+    padding-inline: 15px;
+}
+
+.board-article-update {
+    font-size: 16px;
+    text-align: right;
+    padding: 8px;
+}
+
+.board-article-update>a:hover {
+    text-decoration: underline;
+}
+
+.board-article-upvote {
+    text-align: center;
+    margin: 32px 0;
+}
+
+#upvote_button {
+    width: 60px;
+    height: 60pxpx;
+    border: 1px solid black;
+    background-color: white;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#upvote_button:hover {
+    background-color: rgba(127, 127, 127, 0.5);
+}
+
+.board-article-modifybox{
+    display: inline-block;
+}
+
+.board-article-lnb{
+    margin: 30px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.board-article-before{
+    padding-inline-start: 15px;
+}
+
+.board-article-after{
+    padding-inline-end: 15px;
+}
+
+.move-article{
+    padding: 5px;
+    border: 1px solid gray;
+    border-radius: 1rem;
+    text-align: center;
+}
+
+.board-article-home{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 256px;
+    border: 1px solid gray;
+    border-radius: 1rem;
+    cursor: pointer;
+}
+
+.move-article-list{
+    flex-grow: 1;
+    padding: 5px;
+}
+
+.move-article:hover, .board-article-home:hover{
+    background-color: rgba(127, 127, 127, 0.5);
+}
+
+.board-article-comment{
+    padding: 16px 0;
+}
+
+.comment-count{
+    padding-inline-start: 15px;
+    font-size: 14px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ccc;
+}
+
+.comment-box{
+    /* padding-inline-start: 15px; */
+    padding: 16px 0;
+    /* border-bottom: 1px solid #ccc; */
+}
+
+.comment-form{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 0 16px;
+}
+
+.comment-form .comment-username {
+    padding: 8px 0 8px 8px;
+    font-size: 16px;
+    font-weight: bold;
+
+    z-index: 1;
+}
+
+.comment-form .comment-textbox {
+    display: flex;
+    gap: 8px;
+}
+
+.comment-form .comment-textarea {
+    flex-grow: 1;
+    resize: none;
+    border-radius: .4rem;
+    padding-top: 8px;
+    padding-inline-start: 8px;
+    font-size: 16px;
+
+    z-index: 0;
+}
+
+.comment-form .comment-submit-box {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+
+    all: unset;
+    font-size: 12px;
+    padding: 4px 12px;
+    cursor: pointer;
+    border: 3px solid gray;
+    border-radius: .4rem;
+}
+
+.user-comment-box {
+    margin-top: 32px;
+    padding: 0 16px;
+    font-size: 16px;
+}
+
+.user-comment {
+    position: relative;
+    border: 1px solid gray;
+    border-radius: .7rem;
+    margin: 16px 0;
+}
+
+.user-comment .user-info{
+    padding: 8px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.user-comment .user-info .comment-username {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.user-comment .user-info .comment-day {
+    font-size: 12px;
+}
+
+.user-comment .comment {
+    margin-top: 14px;
+    padding: 8px;
+}
+
+.user-comment .removal-comment {
+    position: absolute;
+
+    right: 8px;
+    bottom: 2px;
+}
+
+.user-comment .removal-comment>img{
+    cursor: pointer;
+}
+
+.user-comment .removal-comment>img:hover {
+    border: 1px solid gray;
+    border-radius: 50%;
+}
+
+.cancle-update{
+    background-color : white;
+    border : 3px solid gray;
+    border-radius : .5rem;
+    padding : 0 .5rem;
+    cursor: pointer;
+}
+.article-detail{
+    text-align: center;
+    padding: 16px 0px 16px 0px;
+    border-top: 1px solid #ccc;
+    font-size: 15px;
+}
+.img-size{
+    max-height: 850px;
+    max-width: 100%;
+    display: inline-block;
+}

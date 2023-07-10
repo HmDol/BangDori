@@ -1,0 +1,181 @@
+.whole{
+    height: 100vh;
+    background: #f7f7f7;
+    margin: 0;
+}
+.main{
+    display: flex;
+    flex-direction: column;
+}
+
+.Header_pdd{
+    width: 100%;
+    margin: 40px 0 30px 0;
+}
+.Go_index{
+    text-align: center;
+    width: 150px;
+    height: 36px;
+}
+.box{
+    position: relative;
+    border: 1px solid #d9d9d9;
+    margin: 0 auto;
+    width: 545px;
+    background-color: #fff;
+    z-index: 1;
+    box-sizing: border-box;
+}
+
+.Font_findID{
+    border-bottom: 1px solid #d9d9d9;
+    margin: 0 40px;
+    padding-top: 36px;
+    padding-bottom: 15px;
+    font-size: 18px;
+}
+.notification{
+    position: relative;
+    background-color: #fff;
+    margin: 0 auto;
+    padding: 27px 40px 0 40px;
+}
+
+.notification_deco{
+    height: 97px;
+    margin: 0 50px;
+    text-align: center;
+}
+.notification_txt{
+    margin: 0;
+    padding-top: 28px;
+    text-align: center;
+    font-size: 16px;
+    padding-bottom: 28px;
+}
+.select_how{
+    padding: 17px 9px 19px 20px;
+    border-top: 1px solid #e7e7e7;
+    border-bottom: 1px solid #e7e7e7;
+}
+.select_how2{
+    padding: 17px 9px 19px 20px;
+    border-bottom: 1px solid #e7e7e7;
+}
+.go_find_pw{
+    padding-top: 17px;
+    padding-bottom: 3px;
+    padding-left: 12px;
+}
+.list_bul{
+    color: #999;
+    padding-left: 10px;
+    font-size: 12px;
+}
+.go_find_pw_btn{
+    float: right;
+    margin-right: 11px;
+    margin-top: -2px;
+}
+.go_find_pw_btn_shape{
+    font-size: 12px;
+    color: #666;
+    border: 1px solid #d1d1d1;
+    border-radius: 5px;
+    background-color: #fff;
+}
+.next_btn{
+    border: 1px solid #fb8a44;
+    border-radius: 4px;
+    background-color: #ed9759;
+    color: #fff;
+    text-decoration-line: none;
+    padding: 7px 20px;
+    font-weight: bold
+}
+.select_how_deco{
+    margin: 0;
+    font-weight: bold;
+}
+.text_area{
+    font-size: 11px;
+    margin-left: 28px;
+    font-weight: lighter;
+}
+.logo_deco{
+    color: #eb8a44;
+    font-weight: bold;
+    font-size: 40px;
+}
+
+.input_ID_box_shape{
+    width: 94%;
+    padding: 10px 12px 9px;
+    font-size: 14px;
+    border: 1px solid #d9d9d9;
+    border-radius: 3px;
+    display: block;
+    margin: 0
+}
+.hidden {
+  display: none;
+}
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.modal__background {
+  background-color: rgba(0, 0, 0, 0.6);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.modal__content {
+  text-align: center;
+  position: relative;
+  background-color: white;
+  border-radius: 10px;
+  top: 0;
+  padding: 10px 25px;
+  width: 20%;
+}
+.send_phoneN{
+    padding-top: 15px;
+}
+.input_phoneN{
+    width: 85%;
+    height: 20px;
+}
+.go_login{
+    padding-top: 20px;
+    text-align: center;
+    border-top: 1px solid #d9d9d9;
+}
+.go_login_bt{
+    margin-left: 10px;
+    width: 96px;
+    height: 58px;
+    font-size: 15px;
+    color: white;
+    background-color: #FFA500;
+    border: none;
+    cursor: pointer;
+}
+.go_index_bt{
+    margin-left: 10px;
+    width: 96px;
+    height: 58px;
+    font-size: 15px;
+    color: white;
+    background-color: #FFA500;
+    border: none;
+    cursor: pointer;
+}

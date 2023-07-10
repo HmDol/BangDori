@@ -1,0 +1,104 @@
+{% extends "extends/base.html" %}
+
+{% block mypage %}
+    <script type="text/javascript">
+    function onUpdate() {
+        alert("인증 완료되었습니다.");
+    }
+    </script>
+    <div id="index-box">
+        <div style="border-bottom :2px solid #96ceb4;"><br><br></div>
+        <br>
+        <div id="myinfo-list" class="index-list">내 정보</div>
+        <div id="mynotice-list" class="index-list">내가 쓴 글</div>
+        <div id="bookmark-list" class="index-list">추천 게시글</div>
+        <div id="address-list" class="index-list">주소 설정</div>
+        <div id="corporate-list" class="index-list clicked">사업자 등록</div>
+    </div>
+
+    <div id="content 여백" style="width : 10%"></div>
+
+    <div id="bookmark-box" class="content">
+        <h3>사업자 등록</h3>
+        <p>자신의 사업장을 등록하고 인증할 수 있습니다.</p>
+        <hr>
+        <br>
+        <snap style="font-size:1.5rem;">사업자 등록 절차</snap>
+        <a href="https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?mi=2444&cntntsId=7777">(국세청 바로가기→)</a>
+        <br><br>
+        <div id="corporate-scroll">
+            <h3 class="tit1">사업자등록 신청 절차(부가가치세법 제8조)</h3>
+
+            <div class="indent1">
+                <ul class="list_tit3">
+                    <li>사업자등록은 사업장마다 하여야 함
+                        <ul class="list_st1">
+                            <li>(“사업자단위과세자”가 아닌 경우는) 사업장이 여럿이면 각각의 사업장마다 별도로 사업자등록을 하여야 함</li>
+                        </ul>
+                    </li>
+                    <li>사업개시 전 또는 사업을 시작한 날로부터 20일 이내에 구비서류를 갖추어 관할세무서 또는 가까운 세무서 민원봉사실에 신청하여야 함
+                        <ul class="list_st1">
+                            <li>사업자등록신청서는 사업자 본인이 자필로 서명하여야 함</li>
+                            <li>대리인이 신청할 경우 대리인과 위임자의 신분증을 필히 지참하여야 하며 사업자등록신청서에 사업자 본인 및 대리인 모두 인적사항을 기재하고 자필 서명하여야 함
+                            </li>
+                            <li>2인 이상의 사업자가 공동사업을 하는 경우 사업자등록신청은 공동사업자 중 1인을 대표자로 하여 대표자 명의로 신청해야 함</li>
+                        </ul>
+                    </li>
+                    <li>홈택스에 가입되어 있고 공인인증서가 있으면 세무서에 방문하지 않고 인터넷을 통하여 사업자등록 신청 및 구비서류 전자제출이 가능하며 사업자등록이 완료되면 사업자등록증 발급도
+                        가능함
+                        <p class="fs16">(참조 : “홈택스 ( <a class="bu_linkL" href="https://www.hometax.go.kr"
+                                                        target="_blank" title="새창으로 열립니다." rel="noopener noreferrer">https://www.hometax.go.kr </a>)
+                            → 신청/제출 → 사업자등록신청/정정 등”)</p>
+                    </li>
+                </ul>
+            </div>
+
+            <h3 class="tit1">간이과세자와 일반과세자의 구분</h3>
+
+            <div class="indent1">
+                <ul class="list_tit3">
+                    <li>개인사업자는 공급대가에 따라 간이과세자와 일반과세자로 구분되므로 자기에게 맞는 올바른 과세유형을 선택하여야 함
+                        <ul class="list_st1">
+                            <li>간이과세자 : 연간 공급대가 예상액이 8,000만원 미만인 개인사업자<br>
+                                <span class="font_FB">다만, 아래 사업자는 연간 공급대가 예상액이 8,000만원 미만이라도 간이과세를 적용받을 수 없음</span>
+
+                                <ul class="list_st2">
+                                    <li>광업, 제조업 (과자점, 떡방앗간, 양복·양장·양화점은 가능)</li>
+                                    <li>도매업 (소매업 겸업시 도·소매업 전체), 부동산매매업</li>
+                                    <li>시 이상 지역의 과세유흥장소</li>
+                                    <li>전문직사업자 (변호사, 신판변론인, 변리사, 법무사, 공인회계사, 세무사, 경영지도사, 기술지도자, 감정평가사, 손해사정인업, 통관업, 기술사,
+                                        건축사, 도선사, 측량사업, 공인노무사업, 약사업, 한약사업, 수의사업 등)
+                                    </li>
+                                    <li>국세청장이 정한 간이과세 배제기준에 해당되는 사업자</li>
+                                    <li>현재 일반과세자로 사업을 하고 있는 자가 새로이 사업자등록을 낸 경우 (다만, 개인택시, 용달, 이·미용업은 간이과세 적용 가능)</li>
+                                    <li>일반과세자로부터 포괄양수 받은 사업</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <h3 class="tit1">사업자단위과세 제도</h3>
+
+            <div class="indent1">
+                <ul class="list_tit3">
+                    <li>동일한 사업자에게 2이상의 사업장이 있는 경우로서 해당 사업자의 본점 등을 관할하는 세무서장에게 사업자단위과세자로 등록한 사업자는 그 사업자의 본점 등에서 총괄하여
+                        신고·납부 가능
+                    </li>
+                    <li>본점 또는 주사무소를 포함하여 2이상의 사업장을 신규로 개설하면서 사업자단위과세를 적용받고자 하는 경우 사업개시일로부터 20일 이내에 본점 또는 주사무소 관할세무서장에게
+                        등록 (사업자등록 신청서)
+                    </li>
+                    <li>기존사업자가 사업자단위과세를 적용받으려는 경우 과세기간 개시 20일전까지 등록 (사업자단위과세 등록신청서)</li>
+                </ul>
+            </div>
+        </div>
+        <br>
+        <form method="post" action="">
+            {% csrf_token %}
+            사업자 번호 :
+            <input type="text" name="corp" value="{{ corp }}">
+            <input type="submit" class="button" value="인증하기" onclick="onUpdate()" >
+        </form>
+    </div>
+{% endblock %}

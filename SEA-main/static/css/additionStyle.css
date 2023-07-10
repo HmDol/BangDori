@@ -1,0 +1,18 @@
+.aside {
+  position: absolute;
+  width: 100px;
+  height: 500px;
+  top: 200px;
+  right: 150px;
+  border: 1px solid gray;
+}
+
+.footer {
+  width: 972px;
+  margin: 0 auto;
+  font-size: 16px;
+  border-top: 1px solid #ccc;
+  padding: 30px 0;
+  color: #ccc;
+  text-align: center;
+}

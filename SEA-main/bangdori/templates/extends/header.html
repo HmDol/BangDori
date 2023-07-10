@@ -1,0 +1,71 @@
+{% load static %}
+
+<!-- 로고 & 메뉴 -->
+<div class="header">
+    <div class="gnb">
+        <div class="top-content">
+            <!-- 로고 -->
+            <div class="logo-box">
+                <a href={% url 'index' %}>
+                    <img class="logo" src="{% static 'imgs/logo.png' %}" alt="logo" width="288px"
+                         height="76px"/></a>
+            </div>
+
+            <!-- 로고&웹사이트 설명 -->
+            <div class="logo-title">
+                <span>자취생들을 위한 커뮤니티</span>
+            </div>
+
+            <!-- 검색창 -->
+            <div class="top-content-search">
+                <form action="{% url 'searchall' %}" class="top-search-form" method="POST">
+                    {% csrf_token %}
+                    <div class="top-search-keyword-box">
+                        <!-- 입력 창 -->
+                        <input class="top-search-keyword" type="text" name="search_keyword" placeholder="검색" required/>
+                        <img class="reset"
+                             src="https://kr.seaicons.com/wp-content/uploads/2022/07/Very-Basic-Cancel-icon.png"
+                             alt="cancel" onclick="resetKeyword()" width="15px"/>
+                    </div>
+                    <!-- 검색 버튼 -->
+                    <input type="image" class="search"
+                           src="https://www.pngall.com/wp-content/uploads/8/Vector-Search.png"
+                           alt="search" width="25px"/>
+                </form>
+            </div>
+
+            <!-- 미니로고 -->
+            <div class="logo-on-search">
+                <a href={% url 'index' %}><img class="logo" src="{% static 'imgs/logo_home.png' %}" alt="logo"
+                                               width="86px" height="96px"></a>
+            </div>
+        </div>
+
+        <!-- 메뉴 박스 -->
+        <div class="menu-box">
+            <div class="menu-list">
+                <div class="menu-item">
+                    <a href={% url 'board' name='dabang' %}>다방</a>
+                </div>
+                <div class="menu-item">
+                    <a href={% url 'board' name='succession' %}>승계</a>
+                </div>
+                <div class="menu-item">
+                    <a href={% url 'board' name='essentials' %}>자취생 필수템</a>
+                </div>
+                <div class="menu-item">
+                    <a href={% url 'board' name='group' %}>공동 구매</a>
+                </div>
+                <div class="menu-item">
+                    <a href={% url 'board' name='board' %}>자유 게시판</a>
+                </div>
+                <div class="menu-item">
+                    <a href={% url 'board' name='notice' %}>공지사항</a>
+                </div>
+                <div class="menu-item">
+                    <a href={% url 'board' name='contact' %}>문의하기</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

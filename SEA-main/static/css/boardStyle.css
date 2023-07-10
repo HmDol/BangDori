@@ -1,0 +1,13 @@
+.section{
+    flex-grow: 1;
+}
+
+.top-ad{
+    height: 87px;
+    border: 1px solid gray;
+}
+
+.article{
+    font-size: 120px;
+    border-bottom: 1px solid #ccc;
+}

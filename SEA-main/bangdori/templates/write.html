@@ -1,0 +1,67 @@
+{% extends 'extends/main.html' %}
+
+{% block content %}
+    <div class="board-title-name">
+        {{ name }} 게시판
+        {% if isEdit %}
+            수정
+        {% else %}
+            글쓰기
+        {% endif %}
+    </div>
+
+    <div class="col-12 write-container">
+        <form class="write-form" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="write-title-box">
+                <input id="post_title" type="text" name="title" placeholder="제목을 입력하세요." value="{{ title }}" required>
+            </div>
+
+            <div class="write-btn-box">
+                <div class="write-upload">
+                    <input type="file" id="upload-image-file" name="upload-image-file" class="hidden"/>
+                    <button type="button" class="write-btn">
+                        <label for="upload-image-file" id="upload-image-file-label">사진 첨부</label>
+                    </button>
+                </div>
+                <div class="write-tools" style="margin-left: auto; alignment: right">
+                    <button type="button" id="left_align_btn" class="upload-btn, write-btn" onclick="leftAlign()">왼쪽
+                        정렬
+                    </button>
+                    <button type="button" id="middle_align_btn" class="upload-btn, write-btn" onclick="middleAlign()">중앙
+                        정렬
+                    </button>
+                    <button type="button" id="right_align_btn" class="upload-btn, write-btn" onclick="rightAlign()">오른쪽
+                        정렬
+                    </button>
+                </div>
+            </div>
+            <div class="write-content-box">
+                <textarea class="write-content" rows="25" name="content" placeholder="내용을 입력하세요."
+                          style="text-align: {{ attr }}" required>{{ content }}</textarea>
+            </div>
+            <div class="write-footer">
+                {% if need_addr %}
+                    <!-- 주소 등록 영역 -->
+                    <div class="address-box">
+                        {% include 'address_form.html' %}
+                    </div>
+                {% endif %}
+                {% if isEdit %}
+                    {% if img %}
+                        <div class="write-uploaded-img-box">
+                            <img src="{{ img }}" id="write-uploaded-img" style="max-width: 200px; height: auto"
+                                 alt="게시글 사진">
+                            <label><input type="checkbox" id="write-uploaded-delete" name="write-uploaded-delete"
+                                          value="delete-img">사진 삭제</label>
+                        </div>
+                    {% endif %}
+                    <input type="submit" style="margin-top: 5px;" value="수정">
+                {% else %}
+                    <input type="submit" class="write-btn-compl" style="margin-top: 5px;" value="글쓰기">
+                {% endif %}
+            </div>
+            <input type="hidden" id="alignStatus" name="alignStatus" value="{{ attr }}">
+        </form>
+    </div>
+{% endblock %}

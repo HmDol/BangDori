@@ -1,0 +1,111 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcum icon" href="{% static 'imgs/house_icon.png' %}"/>
+    <link rel="stylesheet" href="{% static 'css/findIDStyle.css' %}">
+    <title>아이디 찾기</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body class = "whole">
+    <header class="main">
+        <div class="Header_pdd">
+            <div style="text-align: center;">
+                <a href={% url 'index' %} onclick="" style="text-decoration: none;">
+                    <i class="Go_index"><h1 class="logo_deco">Bangdori</h1>
+                    </i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section style="padding-bottom: 50px;">
+        <div class="box">
+            <div>
+                <h2 class="Font_findID">휴대폰 인증</h2>
+            </div>
+            <section>
+                <article class="notification">
+                    <div class="notification_deco">
+                        <img src="{% static 'imgs/findID.jpg' %}" alt="findIDImage">
+                    </div>
+                    <dl class="notification_txt">
+                        <dt></dt>
+                        <dt>
+                           본인확인을 위한
+                        </dt>
+                        <br>
+                        <dd style="font-size: 13px; margin-left: 0;">
+                            <span style="color: #069fee;">전화번호 </span>를 입력해주세요
+                        </dd>
+                    </dl>
+                </article>
+                
+                <input type="hidden" name="stragety" value="findID">
+                <article style="padding: 0 40px 41px 40px;">
+                    <form action="/sms/auth" method="post">
+                    <div class="select_how">
+                        <dl class="select_how_deco">
+                            <dt style="padding-bottom: 5px">
+                                <label>
+                                    <span>
+                                        전화번호 입력
+                                    </span>
+                                        {% csrf_token %}
+                                        <div class = "send_phoneN">
+                                        <input class = "input_phoneN" type="tel" name="phone_number" id="phone_number" maxlength="11" placeholder = " -를 제외한 전화번호를 입력해주세요" autofocus>
+                                            <input type="button" id = "send_message" value="전송" onclick>
+                                        </div>
+                                </label>
+                            </dt>
+                        </dl>
+                    </div>
+                    <div class="select_how2">
+                        <dl class="select_how_deco">
+                            <dt style="padding-bottom: 5px">
+                                <label>
+                                    <span>
+                                        인증번호 입력
+                                    </span>
+                                    <div class = "send_phoneN">
+                                        
+                                        <input type="hidden" name="stragety"value="findID">
+                                        <input style = "height: 20px;" type="number" type = "required" placeholder = "인증번호 입력" name="message_number" id="message_number" maxlength="6" required>
+                                        <input type="submit" value = "인증">
+                                        </form>
+                                    </div>
+                                </label>
+                            </dt>
+                        </dl>
+                    </div>
+                </article>
+                </form>
+
+    <script src="{% static 'js/csrf.js' %}"></script>
+
+    <script type="text/javascript">
+        $('#send_message').on('click', function(e) {
+            var csrftoken = getCookie('csrftoken');
+            $.ajax({
+                type:'POST',
+                url:'/sms/send',
+                data:{
+                'stragety':'findID',
+                'phone_number':$('#phone_number').val(),
+                'csrfmiddlewaretoken':csrftoken,
+                },
+                success:function(json){
+                    console.log("data pass success",json);
+                },
+                error : function(xhr,errmsg,err) {
+                console.log(xhr.status + ": " + xhr.responseText); 
+                }
+        });
+        });
+  </script>
+</body>
+</html>

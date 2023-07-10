@@ -1,0 +1,104 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="views" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcum icon" href="{% static 'imgs/house_icon.png' %}"/>
+    <link rel="stylesheet" href="{% static 'css/findIDStyle.css' %}">
+    <script src="js/findID.js"></script>
+    <title>아이디 찾기</title>
+</head>
+<body class="whole">
+
+<div>
+    <!--header-->
+    <header class="main">
+        <div class="Header_pdd">
+            <div style="text-align: center;">
+                <a href={% url 'index' %} onclick="" style="text-decoration: none;">
+                    <i class="Go_index"><h1 class="logo_deco">Bangdori</h1>
+                    </i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!--본문-->
+    <section style="padding-bottom: 50px;">
+        <div class="box">
+            <div>
+                <h2 class="Font_findID">아이디 찾기</h2>
+            </div>
+            <section>
+                <article class="notification">
+                    <div class="notification_deco">
+                        <img src="{% static 'imgs/findID.jpg' %}" alt="findIDImage">
+                    </div>
+                    <dl class="notification_txt">
+                        <dt></dt>
+                        <dt>
+                            아이디를 찾기 위한
+                        </dt>
+                        <br>
+                        <dd style="font-size: 13px; margin-left: 0;">
+                            <span style="color: #069fee;">본인확인 방법</span>을 선택해주세요
+                        </dd>
+                    </dl>
+                </article>
+                <article style="padding: 0 40px 41px 40px;">
+                    <div class="select_how">
+                        <dl class="select_how_deco">
+                            <dt style="padding-bottom: 5px">
+                                <label>
+                                    <span>
+                                        <input type="radio" name="auth_method">
+                                    </span>
+                                    휴대폰 인증
+                                </label>
+                            </dt>
+                            <dd class="text_area">내 명의(이름)으로 가입된 휴대폰으로 본인 확인을 진행합니다.</dd>
+                        </dl>
+                    </div>
+                    <div class="select_how" style="border-top: 0px;">
+                        <dl class="select_how_deco">
+                            <dt style="padding-bottom: 5px">
+                                <label>
+                                    <span>
+                                        <input type="radio" name="auth_method">
+                                    </span>
+                                    아이핀 인증
+                                </label>
+                            </dt>
+                            <dd class="text_area">아이핀 인증이 완료된 후에, 해당 명의(이름)으로 가입된 아이디를 찾습니다.</dd>
+                        </dl>
+                    </div>
+                    <div class="go_find_pw">
+                        <span class="list_bul">비밀번호를 찾으시나요?</span>
+                        <button class="go_find_pw_btn go_find_pw_btn_shape"
+                                onclick="location.href = {% url 'findPW1' %};" style="cursor:pointer;">
+                            <span>비밀번호 찾기</span>
+                        </button>
+                    </div>
+                    <div style="padding-top: 20px; text-align: center;">
+                        <a href="./sms" role = "button" class="next_btn" data-toggle = "modal">
+                            <span>다음단계</span>
+                        </a>
+                    </div>
+                        <div class = "hidden" id = "myModal">
+                            <div class="modal__background"></div>
+                            <div class="modal__content">
+                                <h1 style = "margin: 0;">전화번호 입력</h1>
+                                <div>
+                                    <input type = "text">
+                                </div>
+                                <button>닫기</button>
+                            </div>
+                        </div>
+                </article>
+            </section>
+        </div>
+    </section>
+</div>
+</body>
+</html>

@@ -1,0 +1,228 @@
+.container {
+  width: 100%;
+  height: 100%;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 76px;
+}
+
+.article {
+  display: flex;
+  justify-content: space-between;
+}
+
+.preview-essentials {
+  display: inline-block;
+  width: 736px;
+}
+
+.essentials-board-size {
+  margin: 0 !important;
+  padding-bottom: 16px;
+}
+
+.article-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.login-box {
+  display: inline-block;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+}
+
+.login-user {
+  text-align: center;
+  padding: 15px 5px;
+  margin: 5px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+#login_btn {
+  width: 100px;
+  height: 50px;
+  background-color: #FF8C46;
+  color: white;
+  border: 1px solid white;
+  border-radius: 15px;
+  cursor: pointer;
+}
+.info-user {
+  padding: 5px 0px 5px 0px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.separate-line {
+  margin: 0 5px;
+}
+
+.small-ad {
+  text-align: center;
+  cursor: pointer;
+}
+
+.small-ad > img {
+  vertical-align: bottom;
+}
+
+.after-login{
+  margin: 0;
+  border: none !important;
+}
+
+.login-after-user-info{
+  margin: 16px 0;
+  gap: 10px;
+}
+
+.login-user-img{
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 36px;
+  width: 24px;
+}
+
+.login-user-info{
+  width: 145px;
+}
+
+.login-after-user-bar{
+  padding: 10px 5px;
+}
+
+.preview-even {
+  gap: 10px;
+}
+
+.preview-post{
+    flex-grow: 1;
+    width: 50%;
+}
+.preview-dabang,
+.preview-succession {
+  flex-grow: 1;
+}
+
+.preview-post-content {
+  position: relative;
+  border: 2px solid #96CEB4;
+}
+
+.preview-top-info {
+  border-top: none !important;
+}
+
+.preview-board,
+.preview-group-buy {
+  display: block !important;
+}
+
+.preview-title {
+  text-align: left;
+  font-size: 20px;
+  margin-bottom: 5px;
+  color: #FF8C46;
+}
+
+.board-title {
+  font-weight: bold !important;
+  margin-top: 30px;
+}
+
+.preview-article {
+  position: relative;
+  border: 1px solid #96CEB4;
+  padding: 16px 0 32px 0;
+}
+
+.preview-more {
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+}
+
+.more {
+  color: #ccc !important;
+}
+
+.board-banner {
+  margin: 30px 0;
+}
+
+div{
+  /* margin : 2px; */
+}
+
+.user-content-box{
+  display : flex;
+  justify-content: center;
+}
+
+.user-content{
+  height : 100%;
+  padding-left: 5px;
+  text-align: center;
+}
+
+.profile-img{
+  width: 24px;
+}
+
+#profile-img{
+  height: 100px;
+  margin : 10px;
+  border-radius : 2rem;
+}
+
+#nickname{
+  font-size : 10px;
+}
+
+#mileage{
+  width : 40%;
+  font-size : 1rem;
+  border-right : 1px solid black;
+}
+
+#address{
+  width : 40%;
+}
+
+#mypage{
+  width : 40%;
+
+}
+
+#mypage-button{
+  height : 3rem;
+  width : 7rem;
+  background-color: #FF8C46;
+  color: white;
+  border: 1px solid white;
+  border-radius: 17px;
+  cursor: pointer;
+}
+
+#logout{
+  width : 40%;
+}
+
+#logout-button{
+  height : 3rem;
+  width : 7rem;
+  background-color: #FF8C46;
+  color: white;
+  border: 1px solid white;
+  border-radius: 17px;
+  cursor: pointer;
+}
+
+

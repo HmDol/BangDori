@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcum icon" href="{% static 'imgs/house_icon.png' %}"/>
+    <link rel="stylesheet" href="{% static 'css/findIDStyle.css' %}">
+    <title>아이디 찾기</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body class = "whole">
+    <header class="main">
+        <div class="Header_pdd">
+            <div style="text-align: center;">
+                <a href={% url 'index' %} onclick="" style="text-decoration: none;">
+                    <i class="Go_index"><h1 class="logo_deco">Bangdori</h1>
+                    </i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section style="padding-bottom: 50px;">
+        <div class="box">
+            <div>
+                <h2 class="Font_findID">아아디 찾기</h2>
+            </div>
+            <section>
+                <article class="notification">
+                    <dl class="notification_txt">
+                        <span>
+                            <h3>찾는 아이디는</h3>
+                            <h3 style = "color: #FF8C46;">{{id}}</h3>
+                        </span>
+                    </dl>
+                </article>
+                <input type="hidden" name="stragety" value="findID">
+                <article style="padding: 0 40px 20px 40px;">
+                    <div class="go_login">
+                        <dl>
+                            <input class = "go_login_bt" type = "button" name="go-login" value = "로그인으로"
+                                   onclick="location.href = {% url 'login' %};" style="cursor:pointer;">
+                            <input class = "go_index_bt" type = "button" name="go-index" value = "홈페이지"
+                                   onclick="location.href = {% url 'index' %};" style="cursor:pointer;">
+                        </dl>
+                    </div>
+                </article>
+            </section>
+        </div>
+</body>
+</html>

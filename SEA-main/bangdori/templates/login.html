@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcum icon" href="{% static 'imgs/house_icon.png' %}"/>
+    <link rel="stylesheet" href="{% static 'css/loginStyle.css' %}">
+    <!-- title icon 설정 필요 -->
+    <link rel="shortcum icon" href="#">
+    <title>login</title>
+</head>
+<body>
+<div class="wrapper">
+    <div class="main">
+        <div class="lnb-logo">
+            <a href={% url 'index' %}>
+                <img src="{% static 'imgs/logo.png' %}" alt="logo" height=150px style="vertical-align: bottom;">
+            </a>
+        </div>
+
+        <div class="error-box">
+            <label>{{ error }}</label>
+        </div>
+
+        <form class="login-form" action="" method="post">
+            {% csrf_token %}
+            <input class="input-box" type="text" name="username" placeholder="아이디 입력">
+            <input class="input-box" type="password" name="password" placeholder="패스워드 입력">
+            <div class="login-checkbox">
+                <input class="input-checkbox" type="checkbox" name="maintain">로그인 상태 유지
+            </div>
+            <input id="submit_btn" type="submit" value="로그인">
+        </form>
+        <div class="info-user">
+            <a href={% url 'register' %}>회원가입</a>
+            <a href={% url 'findID' %}>아이디 찾기</a>
+            <a href={% url 'findPW1' %}>비밀번호 찾기</a>
+        </div>
+        <div class="sns-login">
+            <div class="sns-kakao">
+                <div class="sns-img">
+                    <a href=""><img class="sns-icon" src="{% static 'imgs/kakao.png' %}" alt="kakao" width=35px></a>
+                </div>
+                <div class="sns-title">
+                    <a href={% url 'kakaoLogin' %}><span>카카오 로그인</span></a>
+                </div>
+            </div>
+            <div class="sns-naver">
+                <div class="sns-img">
+                    <a href=""><img class="sns-icon" src="{% static 'imgs/naver.png' %}" alt="naver" width="35px"></a>
+                </div>
+                <div class="sns-title">
+                    <a href={% url 'naverLogin' %}><span>네이버 로그인</span></a>
+                </div>
+            </div>
+            <div class="sns-google">
+                <div class="sns-img">
+                    <a href=""><img class="sns-icon" src="{% static 'imgs/google.png' %}" alt="google" width=35px></a>
+                </div>
+                <div class="sns-title">
+                    <a href={% url 'googleLogin' %}><span>구글 로그인</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure incidunt nam veniam non voluptates quasi quibusdam
+        earum soluta similique sapiente amet optio possimus, tempora sint odit ducimus rem inventore dicta!
+    </div>
+</div>
+</body>
+</html>

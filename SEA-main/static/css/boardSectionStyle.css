@@ -1,0 +1,108 @@
+.section-title{
+    position: relative;
+    left: 10px;
+    bottom: 10px;
+    margin-top: 100px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.top-info{
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    padding: 5px 0;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    font-weight: bold;
+}
+
+.top-title{
+    text-align: center !important;
+}
+
+.total-article-info{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 5px 0;
+}
+
+.article-info{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.id, .views, .recommendation{
+    width: 96px;
+}
+
+.top-info>.title {
+    text-align: center !important;
+}
+
+.title{
+    flex-grow: 1;
+    text-align: left;
+}
+
+.writer, .date{
+    width: 112px;
+}
+
+.preview-article-btn {
+    position: absolute;
+    right: -70px;
+
+    cursor: pointer;
+}
+
+.lnb{
+
+}
+
+.writting-box{
+    padding-top: 15px;
+    text-align: right;
+    height: 30px;
+}
+
+.writting-btn{
+    border: 1px solid gray;
+    background-color:lightcoral;
+    color: white;
+    font-size: 16px;
+    padding: 5px 10px;
+}
+
+.paging-box{
+    text-align: center;
+    color: black;
+    font-weight: bold;
+    font-size: 14px;
+    margin: 16px 0;
+}
+
+.search-box{
+    margin-top: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 15px;
+}
+
+.search-type-box{
+    padding: 5px;
+    width: 100px;
+}
+
+.board-search-keyword{
+    padding: 5px;
+    width: 192px;
+    padding-inline-start: 5px;
+}

@@ -1,0 +1,20 @@
+.scroll-top-btn{
+    visibility: hidden;
+    display: inline-block;
+    position: sticky;
+    border: 1px solid #ccc;
+    border-radius: 30px;
+    padding: 10px;
+    font-size: 16px;
+    bottom: 30px;
+    left: 2%;
+    cursor: pointer;
+}
+.scroll-top-btn:hover {
+    background: rgba(128, 128, 128, 0.3);
+}
+@media(max-width: 1100px) {
+    .scroll-top-btn{
+        display: none;
+    }
+}

@@ -1,0 +1,38 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcum icon" type = "image/png" href="{% static 'imgs/house_icon.png' %}"/>
+    <link rel="stylesheet" href="{% static 'css/mypage.css' %}">
+    <title>마이 페이지</title>
+</head>
+<body>
+<div>
+    <div id="header">
+        <div id='top'>
+            <a href="{% url 'index' %}">
+                <img src="{% static 'imgs/logo.png' %}" alt="로고자리" style="height : 50px">
+            </a>
+        </div>
+        <div id="lnb">
+            <div id="lnb_contents">
+                <span>마이 페이지</span>
+            </div>
+        </div>
+    </div>
+
+    <!--마이페이지 몸통-->
+    <div id="content-body">
+        {% block mypage %}
+        {% endblock %}
+    </div>
+</div>
+
+<script src="{% static 'js/mypage.js' %}"></script>
+<script src="{% static 'js/checkDate.js' %}"></script>
+</body>
+</html>

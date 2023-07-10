@@ -1,0 +1,161 @@
+html{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 12px;
+}
+body{
+    margin: 0;
+    padding: 0;
+}
+.wrapper{
+    margin: 0 auto;
+    width: 800px;
+    background-color: white;
+}
+.logo-box{
+    text-align: center;
+    margin: 46px 0 20px 0;
+}
+
+.error-box {
+    text-align: center;
+    margin-bottom: 18px;
+    font-size: 16px;
+    color: red;
+}
+
+.main{
+    width: 482px;
+    margin: 0 auto;
+}
+
+.input-info{
+    font-size: 20px;
+
+}
+
+.input-box{
+    width: 448px;
+    height: 52px;
+    padding-inline-start: 15px;
+    padding-inline-end: 15px;
+    margin-bottom: 15px;
+}
+
+.input-email{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 57px;
+    margin-bottom: 15px;
+}
+
+.input-email>:first-child{
+    width: 150px;
+}
+
+.input-email>:last-child{
+    width: 135px;
+    height: 58px;
+}
+
+.input-email-box{
+    position: absolute;
+    top: 0;
+    padding-inline-start: 15px;
+    display: flex;
+    flex-direction: row;
+    border: 1px solid gray;
+    width: 109px;
+    height: 55px;
+}
+
+.hidden{
+    visibility: hidden !important;
+}
+
+.email-separate{
+    display: flex;
+    align-items: center;
+}
+
+.js-email{
+    position: relative;
+}
+
+.select-email-box{
+    display: flex;
+    align-items: center;
+    border: 1px solid gray;
+    padding-inline-start: 15px;
+    width: 111px;
+    height: 58px;
+}
+
+.separte-line{
+    font-size: 20px;
+}
+
+.input-birth{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 15px;
+}
+
+.input-birth>*{
+    margin: 0 7px 0 0;
+    flex-grow: 1;
+    height: 50px;
+    padding-inline-start: 20px;
+}
+
+.input-birth>:last-child{
+    margin: 0;
+}
+
+.submit-btn{
+    display: block;
+    width: 200px;
+    height: 40px;
+    margin: 32px auto;
+    font-size: 20px;
+    color: white;
+    background-color: #8b00ff;
+    border: none;
+    cursor: pointer;
+}
+
+.check-btn{
+    margin-left: 10px;
+    position: absolute;
+    width: 96px;
+    height: 58px;
+    font-size: 15px;
+    color: white;
+    background-color: #8b00ff;
+    border: none;
+    cursor: pointer;
+}
+
+#idBox:focus{
+    outline: none;
+}
+
+.check-box{
+    font-size: 12px;
+}
+
+.check-essential{
+    color: black;
+}
+
+.check-option{
+    color: #ccc;
+}
+
+.count-down{
+    margin-top: 0;
+    color: blue;
+    text-align: end;
+}

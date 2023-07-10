@@ -1,0 +1,216 @@
+#header {
+
+}
+
+#top {
+    max-width: 914px;
+    padding: 0 100px;
+    height: 50px;
+}
+
+#lnb {
+    background-color: #96ceb4;
+    padding: 0 100px;
+}
+
+#lnb_contents {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+}
+
+#content-body {
+    display: flex;
+    padding: 32px 100px;
+
+}
+
+#index-box {
+    width: 250px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #96ceb4;
+    height: 320px;
+}
+
+.index-list {
+    cursor: pointer;
+    border-radius: 1rem;
+    text-align: center;
+    height: 36px;
+    /* item-align : center; */
+    padding-top: 15px;
+    cursor: pointer;
+}
+
+#myinfo-list {
+
+}
+
+#content-box {
+    width: 70%;
+}
+
+.content {
+    width: 60%;
+    height: 1000px;
+    padding: 0 48px;
+}
+
+table {
+    border: 1px solid #c5c5c5;
+}
+
+th {
+    width: 100px;
+    padding: 24px;
+    background: #f9f9f9;
+}
+
+td {
+    justify-content: center;
+    padding: 24px;
+    width: 70%
+}
+
+#myinfo-box {
+
+}
+
+#mypost-box {
+
+}
+
+#bookmark-box {
+}
+
+.total-article-info {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 5px 0;
+}
+
+.top-info {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    padding: 5px 0;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    font-weight: bold;
+}
+
+.paging-box {
+    text-align: center;
+    color: black;
+    font-weight: bold;
+    font-size: 14px;
+    margin: 16px 0;
+}
+
+.search-box {
+    margin-top: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 15px;
+}
+
+.search-type-box {
+    padding: 5px;
+    width: 100px;
+}
+
+.search-box {
+    margin-top: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 15px;
+}
+
+.board-search-keyword {
+    padding: 5px;
+    width: 192px;
+    padding-inline-start: 5px;
+}
+
+.article-info {
+    font-weight: normal !important;
+}
+
+.id {
+    width: 96px;
+}
+
+.title {
+    flex-grow: 1;
+    text-align: center !important;
+}
+
+.writer {
+    width: 112px;
+}
+
+.date {
+    width: 112px;
+}
+
+.views {
+    width: 96px;
+}
+
+.recommendation {
+    width: 96px;
+}
+
+.clicked {
+    background-color: #96ceb4;
+    color: white;
+}
+
+
+.bottom{
+    display : flex;
+    justify-content : center;
+    padding : 10px;
+}
+
+.button{
+    margin : 10px;
+    width : 80px;
+    height : 40px;
+    background-color : white;
+    border-radius : 0.5rem;
+    border : 2px solid #96ceb4;
+    cursor: pointer;
+}
+
+.input-text {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 3px solid #96ceb4;
+    padding-left: 20px;
+}
+
+#corporate-scroll {
+    width: 600px;
+    height: 300px;
+    line-height: 1.5em;
+    overflow: scroll;
+    padding: 5px;
+    border: 1px solid green;
+    border-radius: .5rem;
+}
+
+.addr-click-btn {
+    padding: 16px;
+}
+
+.addr-click-btn > input {
+    padding: 8px 16px;
+}

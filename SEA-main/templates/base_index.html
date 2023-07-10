@@ -1,0 +1,41 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ko" dir="ltr">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="shortcum icon" type = "image/png" href="{% static 'imgs/house_icon.png' %}"/>
+    <link rel="stylesheet" href="{% static 'css/wrapStyle.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/headerStyle.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/sectionStyle.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/additionStyle.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/slideStyle.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/boardSectionStyle.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/topMoveBtn.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/articleStyle.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/writeStyle.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/essentialStyle.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/previewModal.css' %}"/>
+    <title>방도리</title>
+</head>
+<body>
+<div class="wrapper">
+    {% include "extends/header.html" %}
+
+    <!-- main.html -->
+    {% block main %}
+    {% endblock %}
+
+    {% include "extends/modal.html" %}
+    {% include "extends/footer.html" %}
+</div>
+
+<script src="{% static 'js/writting.js' %}"></script>
+<script src="{% static 'js/checkDate.js' %}"></script>
+<script src="{% static 'js/topMove.js' %}"></script>
+<script src="{% static 'js/topSearch.js' %}"></script>
+<script src="{% static 'js/sliderBanner.js' %}"></script>
+<script src="{% static 'js/previewModal.js' %}"></script>
+</body>
+</html>

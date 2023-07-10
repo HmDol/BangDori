@@ -1,0 +1,20 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>닉네임 변경 창</title>
+</head>
+<body>
+<div style="display : flex; height : 200px;justify-content:space-between; align-items : center;">
+    <!--        {{form}}-->
+    <input id="nickname" type="text" value={{ request.user.nickname }}>
+    <input id="nicknameBtn" class="check-btn button2" type="button" value="중복확인">
+    <input type="submit" class="button2" value="적용">
+    <!--        </form>-->
+</div>
+<script src="{% static 'js/idcheck.js' %}"></script>
+</body>
+</html>

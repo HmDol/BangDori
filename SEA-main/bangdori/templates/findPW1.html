@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="views" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcum icon" href="{% static 'imgs/house_icon.png' %}"/>
+    <link rel="stylesheet" href="{% static 'css/findIDStyle.css' %}">
+    <title>BangDori</title>
+</head>
+<body class="whole">
+<div>
+    <!--header-->
+    <header class="main">
+        <div class="Header_pdd">
+            <div style="text-align: center;">
+                <a href={% url 'index' %} onclick="" style="text-decoration: none;">
+                    <i class="Go_index"><h1 class="logo_deco">Bangdori</h1>
+                    </i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!--본문-->
+    <section style="padding-bottom: 50px;">
+        <div class="box">
+            <div>
+                <h2 class="Font_findID">비밀번호 찾기</h2>
+            </div>
+            <section>
+                <article class="notification">
+                    <div class="notification_deco">
+                        <img src="{% static '/imgs/findPW.jpg' %}" alt="findIDImage">
+                    </div>
+                    <dl class="notification_txt">
+                        <dt></dt>
+                        <dt>
+                            비밀번호를 찾기 위한
+                        </dt>
+                        <br>
+                        <dd style="font-size: 13px; margin-left: 0;">
+                            <span style="color: #069fee;">아이디</span>를 입력해주세요
+                        </dd>
+                    </dl>
+                </article>
+                <article style="padding: 0 40px 41px 40px;">
+                    <div class="select_how">
+                                <span style="display: block;">
+                                    <input type="email" class="input_ID_box_shape" style="ime-mode:disabled"
+                                           placeholder="아이디 또는 이메일(대소문자 구분)" required maxlength="50" autofocus >
+                                </span>
+
+                    </div>
+                    <div class="go_find_pw">
+                        <span class="list_bul">아이디를 찾으시나요?</span>
+                        <button class="go_find_pw_btn go_find_pw_btn_shape"
+                                onclick="location.href = {% url 'findID' %};" style="cursor:pointer;">
+                            <span>아이디 찾기</span>
+                        </button>
+                    </div>
+                    <div style="padding-top: 20px; text-align: center;">
+                        <a href={% url 'findPW2' %} class = "next_btn" onclick>
+                        <span>다음단계</span>
+                        </a>
+                    </div>
+                </article>
+            </section>
+        </div>
+    </section>
+</div>
+</body>
+</html>

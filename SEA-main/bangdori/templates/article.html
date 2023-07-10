@@ -1,0 +1,226 @@
+{% extends 'extends/main.html' %}
+{% load static %}
+{% block content %}
+    <div class="row mt-5">
+        <div class="col-12">
+            <div class="board-article">
+                <div class="article-top">
+                    <div class="article-title">
+                        <span>{{ article.title }}</span>
+                    </div>
+                    <div class="article-date">
+                        <span>{{ article.date }}</span>
+                    </div>
+                </div>
+                <div class="article-info">
+                    <div class="article-writer">
+                        {% if writer_img %}
+                            <img class="profile-img" src="{{ writer_img }}">
+                        {% else %}
+                            <!-- 등록해놓은 이미지가 없으면 기본 이미지를 출력하도록 설정 -->
+                            <img class="profile-img" src="{% get_media_prefix %}defaults/default_profile.png">
+                        {% endif %}
+                        <span>{{ article.writer.nickname }}</span>
+                    </div>
+                    <div class="article-user">
+                        <div class="article-views">
+                            조회 수 {{ article.views }}
+                        </div>
+                        <div class="article-upvote">
+                            추천 수
+                            <span id="upvote_count">{{ article.upvote }}</span>
+
+                        </div>
+                        <div class="article-comment">
+                            <!-- ??에 댓글 수 받아주세요 -->
+                            댓글 수 {{ comments.count }}
+                        </div>
+                    </div>
+                </div>
+                {% if need_addr %}
+
+                <div>
+                    <div class="article-detail" id="addr">상세주소 : {{ addr }}</div>
+                    <div id="map" style="width:100%; height:350px; border: 2px solid #96ceb4; margin: 0px 0px 20px 0px;"></div>
+                </div>
+                    <script type="text/javascript"
+                            src="//dapi.kakao.com/v2/maps/sdk.js?appkey=42a75472a2c1f5dc76966d731fce7707"></script>
+                    <script>
+                        var mapContainer = document.getElementById('map'), // 지도를 표시할 div
+                            mapOption = {
+                                center: new kakao.maps.LatLng({{ lat }}, {{ lng }}), // 지도의 중심좌표
+                                level: 3 // 지도의 확대 레벨
+                            };
+
+                        // 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
+                        var map = new kakao.maps.Map(mapContainer, mapOption);
+
+                        var coords = new kakao.maps.LatLng({{ lat }}, {{ lng }});
+
+                        // 결과값으로 받은 위치를 마커로 표시합니다
+                        var marker = new kakao.maps.Marker({
+                            map: map,
+                            position: coords
+                        });
+
+                        // 인포윈도우로 장소에 대한 설명을 표시합니다
+                        var infowindow = new kakao.maps.InfoWindow({
+                            content: '<div style="width:150px;text-align:center;padding:6px 0;">{{ article.title }}</div>'
+                        });
+                        infowindow.open(map, marker);
+
+                        {% if request.user and request.user.addr %}
+                            // 마커가 표시될 위치입니다
+                            var markerPosition = new kakao.maps.LatLng({{ request.user.addr.lat }}, {{ request.user.addr.lng }});
+
+                            // 마커를 생성합니다
+                            var marker = new kakao.maps.Marker({
+                                map: map,
+                                position: markerPosition
+                            });
+                            /*
+                            var userinfo = new kakao.maps.InfoWindow({
+                                position: markerPosition,
+                                content: '<div style="width:150px;text-align:center;padding:6px 0;">
+                            {{ request.user.nickname }}</div>'
+                            });
+
+                            userinfo.open(map);
+                            */
+                        {% endif %}
+                    </script>
+
+                {% endif %}
+
+                <div class="article-content-box">
+                    <div class="article-content" style="text-align: {{ article.attr }}">
+                        {% if article.img %}
+                        <!-- 사진 있으면 출력 -->
+                            <div class="article-img">
+                            <img class = "img-size" id="article-img" src="{{ article.img.url }}" alt="사진">
+                            </div>
+                        {% endif %}
+                        {{ article.content|linebreaks }}
+                    </div>
+
+                    {% if request.user.id == article.writer.id %}
+                        <div class="board-article-update">
+                           <span class = "board-article-modifybox">
+                                <button class="cancle-update"><a class="move-article-update"
+                                                                 href={% url 'update' name=url pk=article.id %}>수정</a>
+                                </button>
+                           </span>
+                            <span class="board-article-modifybox">
+                                <form action={% url 'delete' name=url pk=article.id %} method="post">
+                                    {% csrf_token %}
+                                    <input class="cancle-update" type="submit" value="삭제"></input>
+                                </form>
+                            </span>
+                        </div>
+                    {% else %}
+                        <div class="board-article-upvote">
+                            <input type="hidden" id="board_name" value="{{ url }}">
+
+                            <input type="hidden" id="article_id" value="{{ article.id }}">
+                            <button id="upvote_button">
+                                <img src="{% static 'imgs/upvote_btn.png' %}"
+                                alt="" width="32px"> <br>
+                                {{article.upvote}}
+                            </button>
+
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="board-article-lnb">
+                <div class="board-article-before">
+                    <a class="move-article" href="">< 이전 글</a>
+                </div>
+                <div class="board-article-home">
+                    <a class="move-article-list" href={% url 'board' name=url %}>목록으로</a>
+                </div>
+                <div class="board-article-after">
+                    <a class="move-article" href="">다음 글 ></a>
+                </div>
+            </div>
+
+            <div class="board-article-comment">
+                <div class="comment-count">
+                    댓글 {{ comments.count }}개
+                </div>
+                {% if user.is_authenticated %}
+                    <!-- 로그인하지 않은 상태면 입력창 비활성화 -->
+                    <div class="comment-box">
+                        <form class="comment-form" method="post" action={% url 'comment' name=url pk=article.id %}>
+                            {% csrf_token %}
+                            <span class="comment-username">{{ request.user.nickname }}</span>
+                            <div class="comment-textbox">
+                                <textarea class="comment-textarea" type="textarea" placeholder="댓글을 입력하세요."
+                                          name="comment" rows="3" cols="100"></textarea>
+                                <input class="comment-submit-box" type="submit" value="등록">
+                            </div>
+                        </form>
+                    </div>
+                {% endif %}
+                <div class="user-comment-box comment-box">
+                    {% if comments %}
+                        {% for comment in comments %}
+                            <div class="user-comment">
+                                <div class="user-info">
+                                    <span class="comment-username">{{ comment.writer.nickname }}</span>
+
+                                    <span class="comment-day">{{ comment.updated_at }}</span>
+                                </div>
+                                <div class="comment">
+                                    {{ comment.content|linebreaks }}
+                                </div>
+                                {% if request.user.id == comment.writer.id %}
+                                    <div class="removal-comment">
+                                        <form action={% url 'commentDelete' name=url pk=article.id commentId=comment.id %} method="get">
+                                            <input type="hidden" value="{{ comment.id }}"/>
+                                            <button type="submit" value="">
+                                                <img src="https://www.clipartmax.com/png/middle/108-1087676_close-remove-delete-exit-cross-cancel-trash-comments-close-button-icon-png.png"
+                                                     alt="cancel" width="8px">
+                                            </button>
+                                        </form>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript">
+        $('#upvote_button').on('click', function (e) {
+            var boardname = $('#board_name').val()
+            var article_id = $('#article_id').val()
+            $.ajax({
+                url: '/board/upvote',
+                type: 'get',
+                data: {'board': boardname, 'article_id': article_id},
+                dataType: 'json',
+                success: function (response) {
+                    if (response.state === 'NotLogin')
+                        alert('로그인 해주세요!')
+                    else if (response.state === 'duplicated')
+                        alert('추천 중복입니다!')
+                    else if (response.state === 'success') {
+                        //$('#upvote_count').text = $('#upvote_count').val() +1
+
+                        alert('추천 완료했습니다!')
+                    }
+                },
+                error: function (xhr, error) {
+                    alert("서버와의 통신에서 문제가 발생했습니다.");
+                    console.error("error : " + error);
+                }
+            })
+        })
+    </script>
+{% endblock %}
+

@@ -1,0 +1,85 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="views" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcum icon" href="{% static 'imgs/house_icon.png' %}"/>
+    <link rel="stylesheet" href="{% static 'css/findIDStyle.css' %}">
+    <title>BangDori</title>
+</head>
+<body class="whole">
+<div>
+    <!--header-->
+    <header class="main">
+        <div class="Header_pdd">
+            <div style="text-align: center;">
+                <a href={% url 'index' %} onclick="" style="text-decoration: none;">
+                    <i class="Go_index"><h1 class="logo_deco">Bangdori</h1>
+                    </i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!--본문-->
+    <section style="padding-bottom: 50px;">
+        <div class="box">
+            <div>
+                <h2 class="Font_findID">비밀번호 찾기</h2>
+            </div>
+            <section>
+                <article class="notification">
+                    <div class="notification_deco">
+                        <img src="{% static '/imgs/findPW.jpg' %}" alt="findIDImage">
+                    </div>
+                    <dl class="notification_txt">
+                        <dt></dt>
+                        <dt>
+                            아이디를 찾기 위한
+                        </dt>
+                        <br>
+                        <dd style="font-size: 13px; margin-left: 0;">
+                            <span style="color: #069fee;">본인확인 방법</span>을 선택해주세요
+                        </dd>
+                    </dl>
+                </article>
+                <article style="padding: 0 40px 41px 40px;">
+                    <div class="select_how">
+                        <dl class="select_how_deco">
+                            <dt style="padding-bottom: 5px">
+                                <label>
+                                            <span>
+                                                <input type="radio" name = "auth_method">
+                                            </span>
+                                    휴대폰 인증
+                                </label>
+                            </dt>
+                            <dd class="text_area">내 명의(이름)으로 가입된 휴대폰으로 본인 확인을 진행합니다.</dd>
+                        </dl>
+                    </div>
+                    <div class="select_how" style="border-top: 0px;">
+                        <dl class="select_how_deco">
+                            <dt style="padding-bottom: 5px">
+                                <label>
+                                    <spna>
+                                        <input type="radio" name = "auth_method">
+                                    </spna>
+                                    아이핀 인증
+                                </label>
+                            </dt>
+                            <dd class="text_area">아이핀 인증이 완료된 후에, 해당 명의(이름)으로 가입된 아이디를 찾습니다.</dd>
+                        </dl>
+                    </div>
+                    <div style="padding-top: 20px; text-align: center;">
+                        <a href="./smspw" class="next_btn" onclick>
+                            <span>다음단계</span>
+                        </a>
+                    </div>
+                </article>
+            </section>
+        </div>
+    </section>
+</div>
+</body>
+</html>

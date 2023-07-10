@@ -1,0 +1,25 @@
+{% extends 'extends/main.html' %}
+{% load static %}
+{% block content %}
+    <!-- 공지사항 게시판 -->
+    <div class="board">
+        <div class="preview-title board-title">
+            <span>공지사항 게시판</span>
+        </div>
+
+        <div class="top-info">
+            <div class="id"><span>번호</span></div>
+            <div class="title"><span>제목</span></div>
+            <div class="writer"><span>글쓴이</span></div>
+            <div class="date"><span>작성일</span></div>
+            <div class="views"><span>조회</span></div>
+            <div class="recommendation"><span>추천</span></div>
+        </div>
+
+        <div class="article">Content</div>
+
+        {% include 'extends/search_lnb.html' %}
+    </div>
+    
+    {% include 'extends/banner.html' %}
+{% endblock %}

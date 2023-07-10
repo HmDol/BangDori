@@ -1,0 +1,223 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcum icon" href="{% static 'imgs/house_icon.png' %}"/>
+    <link rel="stylesheet" href="{% static 'css/registerStyle.css' %}">
+    <!-- title icon 설정 필요 -->
+    <link rel="shortcum icon" href="#">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>회원가입</title>
+</head>
+<body>
+<div class="wrapper">
+    <div class="logo-box">
+        <a href={% url 'index' %}><img src="{% static 'imgs/logo.png' %}" alt="logo" width="250px"></a>
+    </div>
+    <div class="error-box">
+        <label>{{ error }}</label>
+    </div>
+    <div class="main">
+        <form action="" onsubmit="return isValid()" method="post">
+            {% csrf_token %}
+            <!-- 아이디 입력란 -->
+            <div class="info-id">
+                <input id="idBox" class="input-box" type="text" name="register_username" placeholder="아이디 입력(8~20자)"
+                       required>
+                <input id="idBtn" class="check-btn" type="button" value="중복확인">
+            </div>
+
+            <!-- 패스워드 입력란 -->
+            <input class="input-box" type="password" name="register_user_pwd"
+                   placeholder="패스워드 입력(문자, 숫자, 특수문자 포함 8~20자)" required>
+
+            <!-- 패스워드 재입력란 -->
+            <input class="input-box" type="password" name="register_user_repwd" placeholder="패스워드 재입력" required>
+
+            <!-- 이메일 입력받는 란 -->
+            <div class="input-email">
+                <input class="input-box" type="text" name="register_user_email_id" placeholder="이메일 주소" required>
+                <span class="separte-line email-separate">@</span>
+                <div class="js-email">
+                    <div class="select-email-box"></div>
+                    <input class="input-email-box hidden" type="text" name="register_user_direct_email">
+                </div>
+                <select id="regEmail" class="input-box email-box" name="register_user_email">
+                </select>
+            </div>
+
+            <!-- 생년월일 선택란 -->
+            <div class="input-birth">
+                <select id="register_user_year" name="register_user_year"></select>
+                <select id="register_user_month" name="register_user_month"></select>
+                <select id="register_user_day" name="register_user_day"></select>
+            </div>
+
+            <!-- 휴대폰 번호 입력란 -->
+            <div class="info-phone">
+                {% csrf_token %}
+                <input class="input-box" type="text" id="register_user_phone" name="register_user_phone"
+                       placeholder="휴대폰 번호 입력('-'제외 11자리 입력)" required>
+                <input class="check-btn" type="button" id="send_btn" value="문자전송">
+            </div>
+
+            <div style="display: none;" id="count">
+                <h3 class="count-down" id="certi01"></h3>
+            </div>
+
+            <!-- 인증 번호 입력란 -->
+            <div class="info-phone">
+                {% csrf_token %}
+                <input class="input-box" type="text" id="verify_user_phone" name="verify_user_phone"
+                       placeholder="인증번호 입력" required>
+                <input class="check-btn" type="button" value="인증하기" id="verify_btn">
+            </div>
+
+            <!-- 닉네임 입력란 -->
+            <div class="info-phone">
+                {% csrf_token %}
+                <input id="nicknameBox" class="input-box" type="text" name="register_user_nickname" placeholder="닉네임 입력"
+                       required>
+                <input id="nicknameBtn" class="check-btn" type="button" value="중복확인">
+            </div>
+            <div class="check-box">
+                <div class="check-essential">
+                    <input type="checkbox" name="check1" required>
+                    <span>[필수] 개인정보 수집 동의</span>
+                </div>
+                <div class="check-essential">
+                    <input type="checkbox" name="check2" required>
+                    <span>[필수] 고유 식별정보 수집 동의</span>
+                </div>
+                <div class="check-essential">
+                    <input type="checkbox" name="check3" required>
+                    <span>[필수] 개인정보 유출 동의</span>
+                </div>
+                <div class="check-option">
+                    <input type="checkbox" name="check4">
+                    <span>[선택] 개인정보 해외 판매 동의</span>
+                </div>
+                <div class="check-option">
+                    <input type="checkbox" name="check5">
+                    <span>[선택] 개인정보의 제 3자 제공 동의</span>
+                </div>
+            </div>
+
+            <input class="submit-btn" type="submit" value="가입하기">
+        </form>
+    </div>
+</div>
+<script type="text/javascript">
+    $('#send_btn').on('click', function (e) {
+        let phone = $('#register_user_phone').val();
+
+        if (phone.length < 1) {
+            alert("전화번호를 입력해주세요.");
+            return;
+        }
+
+        toggleBtn();
+        ChangeName();
+
+        $.ajax({
+            url: '/sms/send',
+            type: 'post',
+            headers: {"X-CSRFToken": '{{csrf_token}}'},
+            data: {
+                'phone_number': phone,
+            },
+            dataType: 'json',
+            success: (response) => {
+                alert("인증번호가 전송되었습니다.")
+            },
+            error: (xhr, err) => {
+                alert("인증번호 전송에 실패했습니다.")
+            }
+        })
+    })
+    $('#verify_btn').on('click', function (e) {
+        console.log($('#verify_user_phone').val())
+        $.ajax({
+            url: '/sms/auth',
+            type: 'post',
+            headers: {"X-CSRFToken": '{{csrf_token}}'},
+            data: {
+                'phone_number': $('#register_user_phone').val(),
+                'message_number': $('#verify_user_phone').val(),
+                'stragety': 'verify'
+            },
+            dataType: 'json',
+            success: (response) => {
+                if (response.state === 'success') {
+                    toggleBtn();
+                    alert("문자 인증에 성공했습니다.");
+                } else if (response.state === 'failure') {
+                    alert("인증번호가 일치하지 않습니다.");
+                }
+            },
+            error: (xhr, err) => {
+                alert("문자 전송에 실패했습니다.")
+            }
+        })
+    })
+</script>
+
+<script>
+    const countDownTimer = function (id, date) {
+        var _vDate = new Date(date);
+        var _second = 1000;
+        var _minute = _second * 60;
+        var _hour = _minute * 60;
+        var timer;
+        var SetTime = 300;
+
+        function showRemaining() {
+
+            if (SetTime < 0) {
+                clearInterval(timer);
+                document.getElementById(id).textContent = '시간 초과! 문자 전송을 다시해주세요!';
+                return;
+            }
+
+            var minutes = Math.floor(SetTime / 60);
+            var seconds = Math.floor(SetTime % 60);
+
+            document.getElementById(id).textContent = minutes + '분 ';
+            document.getElementById(id).textContent += seconds + '초';
+            SetTime--;
+        }
+
+        timer = setInterval(showRemaining, 1000);
+    }
+
+    var dateObj = new Date();
+    dateObj.setDate(dateObj.getDate() + 1);
+
+
+    countDownTimer('certi01', dateObj);
+</script>
+<script>
+    function toggleBtn() {
+        const count = document.getElementById('count');
+        if (count.style.display === 'none') {
+            count.style.display = 'block';
+        } else {
+            count.style.display = 'none';
+        }
+    }
+</script>
+
+<script>
+    function ChangeName() {
+        const btnElement = document.getElementById('send_btn');
+
+        btnElement.value = "문자 재전송";
+    }
+</script>
+
+<script src="{% static 'js/registerOption.js' %}"></script>
+<script src="{% static 'js/idcheck.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+{% load static %}
+
+<div class="lnb">
+    {% if request.user.is_authenticated %}
+        <!-- 검색 화면이면 검색 결과 출력되도록 설정,
+            검색이랑 공용 부분 -->
+        {% if not is_search %}
+            <!-- 공지, 다방 게시판인 경우 글쓰기 버튼이 때에 따라 다르게 동작 -->
+            {% if url == 'notice' %}
+                {% if request.user.is_superuser %}
+                    <div class="writting-box">
+                        <a class="writting-btn" href={% url 'write' name=url %}>글쓰기</a>
+                    </div>
+                {% endif %}
+            {% elif url == 'dabang' %}
+                {% if request.user.is_superuser or request.user.corp_num %}
+                    <div class="writting-box">
+                        <a class="writting-btn" href={% url 'write' name=url %}>글쓰기</a>
+                    </div>
+                {% endif %}
+            {% else %}
+                <div class="writting-box">
+                    <a class="writting-btn" href={% url 'write' name=url %}>글쓰기</a>
+                </div>
+            {% endif %}
+        {% endif %}
+    {% endif %}
+
+    <!-- 페이지 번호 영역 -->
+    <div class="paging-box">
+        {% for page in articles.paginator.page_range %}
+            <!-- 현재 페이지를 기준으로, 앞 뒤 2개의 페이지가 보여짐 -->
+            {% if page >= articles.number|add:-2 and page <= articles.number|add:2 %}
+                <span class="{% if page == articles.number %}current{% endif %}">
+                    <a href="?page={{ page }}">{{ page }}</a>
+                </span>
+                <!-- 현재 페이지를 기준으로, 앞 뒤 3개의 페이지는 ...으로 보여짐 -->
+            {% elif page >= articles.number|add:-3 and page <= articles.number|add:3 %}
+                ...
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <div class="search-box">
+        <div class="board-search-keyword-box">
+            <form action="{% url 'searcharticle' name=url %}" method="post">
+                {% csrf_token %}
+                <select class="search-type-box" name="search-type" id="">
+                    <option value="search-tc">제목+내용</option>
+                    <option value="search-t">제목</option>
+                    <option value="search-c">내용</option>
+                    <option value="search-w">글쓴이</option>
+                    <option value="search-cmt">댓글</option>
+                </select>
+                <input name="board-search-keyword" class="board-search-keyword" type="text" placeholder="검색어 입력"
+                       required/>
+                <!-- 검색 버튼 -->
+                <input type="image" class="search_lnb"
+                       src="https://www.pngall.com/wp-content/uploads/8/Vector-Search.png"
+                       alt="search" width="25px"/>
+            </form>
+        </div>
+    </div>
+</div>

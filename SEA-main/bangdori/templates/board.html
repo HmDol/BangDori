@@ -1,0 +1,107 @@
+{% extends 'extends/main.html' %}
+{% load static %}
+{% block content %}
+    <!-- 게시판 공통 레이아웃 -->
+    <div class="board">
+        <div class="preview-title board-title">
+            <!-- 검색 화면이면 검색 결과 출력되도록 설정,
+            검색이랑 공용 부분 -->
+            {% if is_search %}
+                <span>
+                    {% if keyword %}
+                        {{ keyword }}
+                    {% endif %}
+                    검색 결과</span>
+            {% else %}
+                <span>{{ name }} 게시판</span>
+            {% endif %}
+        </div>
+
+        {% if name != '필수템' %}
+            <div class="total-article-info">
+                <div class="top-info">
+                    <div class="id">번호</div>
+                    <div class="title top-title">제목</div>
+                    <div class="writer">글쓴이</div>
+                    <div class="date">작성일</div>
+                    <div class="views">조회</div>
+                    <div class="recommendation">추천</div>
+                </div>
+
+                <!-- 게시물 목록 영역 -->
+                {% if articles %}
+                    {% for article in articles %}
+                        <div class="article-info">
+                            <div class="id">{{ forloop.counter }}</div>
+                            <div class="title">
+                                <!-- 검색 화면이면 결과 주소로 출력되도록 설정,
+                                검색이랑 공용 부분 -->
+                                {% if is_global_search %}
+                                    <a href="{% url 'article' name=article.url pk=article.id %}">
+                                {% else %}
+                                    <a href="{% url 'article' name=url pk=article.id %}">
+                                {% endif %}
+                                {{ article.title }}
+                                {% if comments|dict_key:article.id %}
+                                    [{{ comments|dict_key:article.id }}]
+                                {% endif %}
+                                </a>
+                            </div>
+                            <div class="writer">{{ article.writer.nickname }}</div>
+                            <div class="date js-date">{{ article.date }}</div>
+                            <div class="views">{{ article.views }}</div>
+                            <div class="recommendation">{{ article.upvote }}</div>
+                            {% if name == '승계' or name == '다방' %}
+                                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                                <button class="preview-article-btn" onclick="getArticleInfo('{{ url }}', {{ article.id }}); openModal()">미리보기</button>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <!-- 전체 검색이 아니면 아래에 있는 검색은 뺄게용 -->
+        {% else %}
+            <div class="essential-board">
+                {% if articles %}
+                    {% for article in articles %}
+                        <div class="box">
+                            <div class="card-id">{{ forloop.counter }}</div>
+                            <div class="card-title">
+                                {% if is_global_search %}
+                                    <a href="{% url 'article' name=article.url pk=article.id %}">
+                                {% else %}
+                                    <a href="{% url 'article' name=url pk=article.id %}">
+                                {% endif %}
+                                <img
+                                        {% if article.img %}
+                                            src="{{ article.img.url }}"
+                                        {% else %}
+                                            src="{% get_media_prefix %}defaults/no_image.jpg"
+                                        {% endif %}
+                                            alt="게시글 이미지" width="208px" height="128px">
+                                {{ article.title }}
+                                {% if comments|dict_key:article.id %}
+                                    [{{ comments|dict_key:article.id }}]
+                                {% endif %}
+                                </a>
+                            </div>
+                            <div class="card-writer">
+                                <span>{{ article.writer.nickname }}</span>
+                            </div>
+                            <div class="card-info">
+                                <span class="js-date">{{ article.date }}</span>
+                                <span>| 추천수: {{ article.upvote }}</span>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+            </div>
+        {% endif %}
+        {% if not is_global_search %}
+            {% include 'extends/search_lnb.html' %}
+        {% endif %}
+    </div>
+
+    {% include 'extends/banner.html' %}
+{% endblock %}

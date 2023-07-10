@@ -1,0 +1,142 @@
+{% extends 'base_index.html' %}
+{% load static %}
+{% block main %}
+    <!-- index 화면의 main 내용 -->
+    <div class="main dabang_board">
+        <div class="container">
+            <div class="section">
+                {% if 'index' in request.get_full_path %}
+                    <!-- 자취생 필수템 및 로그인 박스 -->
+                    <div class="article">
+                        <!-- 자취생 필수템 미리보기 -->
+                        <div class="preview-essentials">
+                            <div class="preview-title" style="font-weight: 600; padding-top: 24px;">자취생 필수템</div>
+
+                            <div class="preview-article essential-board essentials-board-size"
+                                 style="border: 3px solid #96CEB4;">
+                                {% if articles.essentials %}
+                                    {% for article in articles.essentials %}
+                                        {% if forloop.counter <= 3 %}
+                                            <div class="box">
+                                                <div class="card-title">
+                                                    <a href="{% url 'article' name=article.url pk=article.id %}">
+                                                        <img
+                                                                {% if article.img %}
+                                                                    src="{{ article.img.url }}"
+                                                                {% else %}
+                                                                    src="{% get_media_prefix %}defaults/no_image.jpg"
+                                                                {% endif %}
+                                                                    alt="" width="208px" height="128px">
+                                                        {{ article.title }}
+                                                    </a>
+                                                </div>
+                                                <div class="card-writer">
+                                                    <span>{{ article.writer.nickname }}</span>
+                                                </div>
+                                                <div class="card-info">
+                                                    <span class="js-date">{{ article.date }}</span>
+                                                    <span>| 추천수: {{ article.upvote }}</span>
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
+                                <div class="preview-more">
+                                    <a class="more" href={% url 'board' name='essentials' %}>더보기 ...</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        {% if request.user.is_authenticated %}
+                            <!-- 로그인 이후 -->
+                            <div id="after-login" class="article-box">
+                                <!-- 로그인 이후 박스 -->
+                                <div class="login-box after-login">
+                                    <div class="login-after-user-info">
+                                        <div style="border : 1px solid black; border-radius : 1rem; padding: 8px;">
+                                            <div class="user-content-box">
+                                                {% if request.user.profile.image.url %}
+                                                    <img id="profile-img"
+                                                         src="{{ request.user.profile.image.url }}"
+                                                         alt="프로필 사진">
+                                                {% else %}
+                                                    <!-- 등록해놓은 이미지가 없으면 기본 이미지를 출력하도록 설정 -->
+                                                    <img id="profile-img"
+                                                         src="{% get_media_prefix %}profile/../../../media/defaults/default_profile.png"
+                                                         alt="프로필 사진">
+                                                {% endif %}
+                                            </div>
+                                            <div class="user-content-box">
+                                                <snap id="nickname" class="user-content">{{ request.user.nickname }}님이
+                                                    로그인 중
+                                                </snap>
+                                            </div>
+                                            <hr>
+                                            <div>
+                                                <div class="user-content-box">
+                                                    <div id="mileage" class="user-content">마일리지
+                                                        : {{ request.user.mileage }}</div>
+                                                    <div id="address" class="user-content">
+                                                        {% if request.user.addr %}
+                                                            <!-- 등록된 주소가 있는 경우, 주소를 출력 -->
+                                                            {{ request.user.addr.city }} {{ request.user.addr.state }}
+                                                        {% else %}
+                                                            <!-- 등록된 주소가 없는 경우, 주소를 입력하는 사이트를 출력 -->
+                                                            <a href="{% url 'profileapp:address' %}">[주소등록]</a>
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                                <div class="user-content-box">
+                                                    <div id="mypage" class="user-content"
+                                                         style="padding-left: 5px; padding-right: 12px;"><a
+                                                            href="{% url 'profileapp:myinfo' %}"><input
+                                                            type="button" id="mypage-button" value="My Page"></a></div>
+
+                                                    <div id="logout" class="user-content"
+                                                         style="padding-left: 5px; padding-right: 7px;"><a
+                                                            href="{% url 'logout' %}"><input type="button"
+                                                                                             id="logout-button"
+                                                                                             value="로그아웃"></a></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% else %}
+                            <!-- 로그인 이전 박스 및 광고 -->
+                            <div id="before-login" class="article-box">
+                                <!-- 로그인 박스 -->
+                                <div class="login-box">
+                                    <div class="login-user">
+                                        <a href={% url 'login' %}>
+                                            <button id="login_btn">로그인</button>
+                                        </a>
+                                    </div>
+                                    <div class="info-user">
+                                        <a style="font-size : .9rem;" href={% url 'register' %}>회원가입</a>
+                                        <div class="separate-line">|</div>
+                                        <a style="font-size : .9rem;" href={% url 'findID' %}>아이디 찾기</a>
+                                        <div class="separate-line">|</div>
+                                        <a style="font-size : .9rem;" href={% url 'findPW1' %}>비밀번호 찾기</a>
+                                    </div>
+                                </div>
+                                <!-- 광고 -->
+                                <div class="small-ad">
+                                    <img src="https://cdn.imweb.me/upload/S202012024cbcaa94f0469/3ef91e34b935f.png"
+                                         alt="ad"
+                                         width="226px" height="127px"/>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endif %}
+
+                <!-- content -->
+                {% block content %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

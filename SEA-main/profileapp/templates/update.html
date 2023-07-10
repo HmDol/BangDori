@@ -1,0 +1,86 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>profile</title>
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+<body>
+<div>
+    <div id="header">
+        <div id='top' style="font-size:1.8rem">
+            <a href="{% url 'index' %}">
+                <img src="{% static 'imgs/logo.png' %}" alt="로고자리" style="height : 50px">
+            </a>
+        </div>
+        <div id="lnb">
+            <div class="lnb_contents">
+                <div><h2 style = "color: white;">방도리 간편 프로필 변경</h2></div>
+                <div style="width : 600px"></div>
+                <div class="lnb_mypage"><a href=""><b>My Page →</b></a></div>
+
+            </div>
+        </div>
+    </div>
+
+    <div id="container">
+        <div id="content">
+            <div class="header">
+                <h3>프로필 수정</h3>
+                <p style="padding-top: color:#666">방도리 대표 프로필과 별명을 수정 하실 수 있습니다.</p>
+            </div>
+            <div>
+                <table class="tablestyle">
+                    <tr class="tabletr">
+                        <th class="tableth">프로필 사진</th>
+                        <td style="padding : 0 50px; border-bottom : 1px solid #e5e5e5;">
+                            <div>
+                                <div>
+                                    {% if request.user.profile %}
+                                        <img id="profile_pt" src="{{ request.user.profile.image.url }}" alt="프로필 사진">
+                                    {% else %}
+                                        <img id="profile_pt" src="{% get_media_prefix %}defaults/default_profile.png"
+                                             alt="프로필 사진">
+                                    {% endif %}
+                                </div>
+
+                                <div class="pt_button">
+                                    <form action="{% url 'profileapp:update' pk=target_profile.pk %}" method="post"
+                                          enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        {{ form.image }}
+                                        <!--                                        <input class = "pt_btn1" type="file" value="파일">-->
+                                        <!--                                        <input class = "pt_btn" type="button" value="기본사진">-->
+                                        <!--                                        <input class = "pt_btn" type="button" value="삭제">-->
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr class="tabletr">
+                        <th class="tableth">별명 설정</th>
+                        <td>
+                            <div style="padding : 0 50px;">
+                                <input id="nicknameBox" type="text" value={{ request.user.nickname }}>
+                                <!--                                    <input id ="nic_submit" type="submit" value="확인">-->
+                                <input id="nicknameBtn" class="check-btn" type="button" value="중복확인">
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="bottom">
+                <input class="button" type="submit" value="적용">
+                <input class="button" type="submit" value="취소">
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="{% static 'js/idcheck.js' %}"></script>
+</body>
+</html>
